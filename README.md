@@ -23,6 +23,30 @@ Before running the application, ensure you have configured your MySQL connection
 ```bash
 DATABASE_URL=mysql+pymysql://username:password@host:port/database
 ```
+#### Database Schema
+
+The application uses a MySQL database with a single `users` table to manage membership data. 
+If you don't have MySQL installed yet, you can download it from the [MySQL Official Downloads](https://dev.mysql.com/downloads/) page.
+
+| Column Name | Data Type | Attributes | Description |
+| :--- | :--- | :--- | :--- |
+| **`id`** | `INT` | PRIMARY KEY, AUTO_INCREMENT | Unique identifier for each user. |
+| **`username`** | `VARCHAR(50)` | NOT NULL, UNIQUE | The user's chosen display name (used for login). |
+| **`password`** | `VARCHAR(255)` | NOT NULL | Hashed password for secure authentication. |
+| **`email`** | `VARCHAR(100)` | NOT NULL, UNIQUE | The user's email address. |
+
+You can initialize the database schema using the following SQL statement:
+
+```sql
+CREATE TABLE `users` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(50) NOT NULL UNIQUE,    
+    `password` VARCHAR(255) NOT NULL,          
+    `email` VARCHAR(100) NOT NULL UNIQUE,   
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
 ### 6. Running the Application
 ```bash
 python app.py
