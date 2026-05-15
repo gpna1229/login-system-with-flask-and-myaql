@@ -20,7 +20,10 @@ def user_login():
 
         if user:
             if user.password == password:
-                return redirect(url_for("user_list"))
+                if user.username == "admin":
+                    return redirect(url_for("user_list"))
+                else:
+                    return redirect(url_for("user_profile", username=user.username))
             else:
                 return "密碼錯誤！"
         else:
@@ -42,7 +45,12 @@ def user_create():
         )
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for("user_list"))
+        return redirect(url_for("user_profile"))
     return render_template("register.html")
+
+@app.route("/profile/<username>")
+def user_profile(username):
+    user = db.session.execute(db.select(User).filter_by(username=username)).scalar()
+    return render_template("profile.html", user=user)
 
 app.run()
