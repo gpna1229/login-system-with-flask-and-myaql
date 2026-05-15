@@ -11,6 +11,22 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE_URL')
 db.init_app(app)
 
+@app.route("/", methods=["GET", "POST"])
+def user_login():
+    if request.method == "POST":
+        username=request.form.get("username")
+        password = request.form.get("password")
+        user = db.session.execute(db.select(User).filter_by(username=username)).scalar()
+
+        if user:
+            if user.password == password:
+                return redirect(url_for("user_list"))
+            else:
+                return "密碼錯誤！"
+        else:
+            return "查無此使用者！"
+    return render_template("index.html")
+
 @app.route("/userlist")
 def user_list():
     users = db.session.execute(db.select(User).order_by(User.username)).scalars().all()
