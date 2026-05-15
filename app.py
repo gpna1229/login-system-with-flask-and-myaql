@@ -13,7 +13,7 @@ db.init_app(app)
 
 @app.route("/users")
 def user_list():
-    users = db.session.execute(db.select(User).order_by(User.username)).scalars()
+    users = db.session.execute(db.select(User).order_by(User.username)).scalars().all()
     return render_template("list.html", users=users)
 
 app.run()
