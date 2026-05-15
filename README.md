@@ -1,7 +1,7 @@
 # Login System With Flask And MySQL
 A simple project for a membership system built with Flask and MySQL, featuring registration, and an administrative member list view.
 
-# Getting Started
+## Getting Started
 Follow these steps to set up and run the project locally.
 ### 1. Prerequisites
 This project requires **Python 3** and a running **MySQL** database instance.
