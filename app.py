@@ -8,9 +8,9 @@ from models import db, User
 load_dotenv()
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE_URL')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 db.init_app(app)
-app.secret_key = os.getenv('SECRET_KEY')
+app.secret_key = os.getenv("SECRET_KEY")
 
 @app.route("/", methods=["GET", "POST"])
 def user_login():
@@ -21,10 +21,13 @@ def user_login():
 
         if user:
             if user.password == password:
+                session["username"] = user.username
+                session["email"] = user.email
+
                 if user.username == "admin":
                     return redirect(url_for("user_list"))
                 else:
-                    return redirect(url_for("user_profile", username=user.username))
+                    return redirect(url_for("user_profile"))
             else:
                 return "密碼錯誤！"
         else:
@@ -33,6 +36,8 @@ def user_login():
 
 @app.route("/userlist")
 def user_list():
+    if "username" not in session or session["username"] != "admin": 
+        return render_template("index.html")
     users = db.session.execute(db.select(User).order_by(User.username)).scalars().all()
     return render_template("list.html", users=users)
 
@@ -49,9 +54,14 @@ def user_create():
         return redirect(url_for("user_profile"))
     return render_template("register.html")
 
-@app.route("/profile/<username>")
-def user_profile(username):
-    user = db.session.execute(db.select(User).filter_by(username=username)).scalar()
-    return render_template("profile.html", user=user)
+@app.route("/profile")
+def user_profile():
+    if "username" not in session:
+        return render_template("index.html")
+    current_user = {
+        "username": session["username"],
+        "email": session["email"]
+    }
+    return render_template("profile.html", user=current_user)
 
 app.run()
