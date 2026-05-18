@@ -37,7 +37,7 @@ def user_login():
 @app.route("/userlist")
 def user_list():
     if "username" not in session or session["username"] != "admin": 
-        return render_template("index.html")
+        return redirect(url_for("user_login"))
     users = db.session.execute(db.select(User).order_by(User.username)).scalars().all()
     return render_template("list.html", users=users)
 
@@ -51,13 +51,13 @@ def user_create():
         )
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for("user_profile"))
+        return redirect(url_for("user_login"))
     return render_template("register.html")
 
 @app.route("/profile")
 def user_profile():
     if "username" not in session:
-        return render_template("index.html")
+        return redirect(url_for("user_login"))
     current_user = {
         "username": session["username"],
         "email": session["email"]
