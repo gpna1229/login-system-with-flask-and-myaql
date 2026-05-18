@@ -61,7 +61,8 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 ### 5. Environment Variables Configuration (.env)
-The application relies on environment variables to keep sensitive configuration secure. Create a file named `.env` in the root directory of the project and add the following variables:
+The application relies on environment variables to keep sensitive configuration secure.
+</br>Create a file named `.env` in the root directory of the project and add the following variables:
 ```bash
 DATABASE_URL=mysql+pymysql://username:password@host:port/database_name
 SECRET_KEY=your_super_secret_random_key_here
