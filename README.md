@@ -26,8 +26,8 @@ This project requires **Python 3** and a running **MySQL** database instance.
 
 ### 2. Clone This Project
 ```bash
-git clone https://github.com/gpna1229/login-system-with-flask-and-myaql.git
-cd login-system-with-flask-and-myaql
+git clone https://github.com/gpna1229/login-system-with-flask-and-mysql.git
+cd login-system-with-flask-and-mysql
 ```
 ### 3. Install Dependencies
 ```bash
