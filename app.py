@@ -64,4 +64,9 @@ def user_profile():
     }
     return render_template("profile.html", user=current_user)
 
+@app.route("/logout")
+def user_logout():
+    session.clear() 
+    return redirect(url_for("user_login"))
+
 app.run()
