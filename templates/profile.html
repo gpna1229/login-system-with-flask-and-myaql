@@ -21,7 +21,9 @@
                     <span class="font-bold text-slate-800 text-lg">會員中心</span>
                 </div>
                 <div class="flex items-center gap-4">
+                    {% if user.username == "admin" %}
                     <a href="/userlist" class="text-sm text-slate-600 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg hover:bg-slate-50 transition-all duration-200">管理會員</a>
+                    {% endif %}
                     <a href="/logout" class="text-sm text-rose-600 hover:text-rose-700 font-medium px-3 py-2 rounded-lg hover:bg-rose-50 transition-all duration-200">登出</a>
                 </div>
             </div>
