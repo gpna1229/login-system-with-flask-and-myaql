@@ -1,28 +1,28 @@
 # Login System With Flask And MySQL
 A simple project for a membership system built with Flask and MySQL, featuring registration, and an administrative member list view.
 
+## Tech Stack
+* **Backend**: Python, Flask, Flask-SQLAlchemy
+* **Frontend**: Tailwind CSS (UI designed in collaboration with Google Gemini)
+* **Database**: MySQL
+* **Deployment**: AWS EC2 (Ubuntu), OpenSSH, Git
+
 ## Getting Started
 Follow these steps to set up and run the project locally.
 ### 1. Prerequisites
 This project requires **Python 3** and a running **MySQL** database instance.
 
-### 2. Install Flask (A lightweight WSGI web application framework)
+### 2. Clone This Project
 ```bash
-pip install Flask
+git clone https://github.com/gpna1229/login-system-with-flask-and-myaql.git
+cd login-system-with-flask-and-myaql
 ```
-### 3. Install Flask-SQLAlchemy (Simplifies SQLAlchemy integration with Flask)
+### 3. Install Dependencies
 ```bash
-pip install flask-sqlalchemy 
+pip install -r requirements.txt
 ```
-### 4. Install PyMySQL (A pure-Python MySQL client database driver)
-```bash
-pip install PyMySQL
-```
-### 5. Database Configuration
+### 4. Database Configuration
 Before running the application, ensure you have configured your MySQL connection string in your settings.
-```bash
-DATABASE_URL=mysql+pymysql://username:password@host:port/database
-```
 #### Database Schema
 
 The application uses a MySQL database with a single `users` table to manage membership data. 
@@ -38,6 +38,8 @@ If you don't have MySQL installed yet, you can download it from the [MySQL Offic
 You can initialize the database schema using the following SQL statement:
 
 ```sql
+CREATE DATABASE member_system CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE member_system;
 CREATE TABLE `users` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(50) NOT NULL UNIQUE,    
@@ -46,7 +48,12 @@ CREATE TABLE `users` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
-
+### 5. Environment Variables Configuration (.env)
+The application relies on environment variables to keep sensitive configuration secure. Create a file named `.env` in the root directory of the project and add the following variables:
+```bash
+DATABASE_URL=mysql+pymysql://username:password@host:port/database_name
+SECRET_KEY=your_super_secret_random_key_here
+```
 ### 6. Running the Application
 ```bash
 python app.py
