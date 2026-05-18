@@ -1,5 +1,8 @@
 # Login System With Flask And MySQL
 A simple project for a membership system built with Flask and MySQL, featuring registration, and an administrative member list view.
+</br></br>
+<img width="490" height="569" alt="image" src="https://github.com/user-attachments/assets/7e89037a-35c9-4c97-b516-9f03c717aabe" />
+
 
 ## Tech Stack
 * **Backend**: Python, Flask, Flask-SQLAlchemy
@@ -26,7 +29,7 @@ Before running the application, ensure you have configured your MySQL connection
 #### Database Schema
 
 The application uses a MySQL database with a single `users` table to manage membership data. 
-If you don't have MySQL installed yet, you can download it from the [MySQL Official Downloads](https://dev.mysql.com/downloads/) page.
+</br>If you don't have MySQL installed yet, you can download it from the [MySQL Official Downloads](https://dev.mysql.com/downloads/) page.
 
 | Column Name | Data Type | Attributes | Description |
 | :--- | :--- | :--- | :--- |
