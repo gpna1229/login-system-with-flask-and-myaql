@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from dotenv import load_dotenv
 
 from models import db, User
@@ -10,6 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE_URL')
 db.init_app(app)
+app.secret_key = os.getenv('SECRET_KEY')
 
 @app.route("/", methods=["GET", "POST"])
 def user_login():
