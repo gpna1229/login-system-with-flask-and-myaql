@@ -70,3 +70,7 @@ SECRET_KEY=your_super_secret_random_key_here
 ```bash
 python app.py
 ```
+## Roadmap & TODOs
+Here are the upcoming features and improvements planned for this project:
+- [ ] **Robust Input Validation**: Implement strict rules for registration (e.g., strong password requirements, email format checks, and character length limits).
+- [ ] **Enhanced Error Handling**: Improve user experience by handling authentication failures gracefully (e.g., displaying specific error messages for "Incorrect password" or "Username does not exist").
